@@ -1,5 +1,12 @@
 let express = require("express");
+let bodyParser = require("body-parser");
 let app = express();
+
+app.use(bodyParser.urlencoded({
+    extended: true,
+}));
+
+app.use(bodyParser.json());
 
 let server = app.listen(3000, function(){
     console.log("Node.js is listening to PORT:" + server.address().port);
@@ -22,4 +29,8 @@ let subsList = [
 
 app.get("/subpurseapi/test.json", function(req, res, text){
     res.json(subsList);
+});
+
+app.post("/subpurseapi/testpost.json", function(req, res, text){
+    res.send(subsList);
 });
