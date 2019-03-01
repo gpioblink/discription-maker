@@ -16,6 +16,23 @@
 - 「Next Stage」の文法からマッチしたものを表示
   - 正規表現ちゃんとやりたい
 
+## 出力フォーマット
+
+```JSON
+{
+    startTime: "0.33",
+    endTime: "3.22",
+    text: "Hello! My name is Ai Ueo!!",
+    details: [
+        {
+            startIdx: "0",
+            endIdx: "4",
+            text: "こんにちは"
+        }
+    ]
+}
+```
+
 ## 解析のサンプル
 
 ### "Lazy And Cowardly Princess"
