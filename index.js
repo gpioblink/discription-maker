@@ -1,9 +1,20 @@
 let express = require("express");
 let bodyParser = require("body-parser");
+let multer = multer()
 let app = express();
 
 app.use(bodyParser.urlencoded({
     extended: true,
+}));
+
+app.use(bodyParser.raw({
+    inflate: true,
+    limit: '100kb',
+    type: '100kb',
+    type: 'application/octet-stream',
+    verify: function (req, res, buf,encoding){
+
+    }
 }));
 
 app.use(bodyParser.json());
@@ -32,5 +43,13 @@ app.get("/subpurseapi/test.json", function(req, res, text){
 });
 
 app.post("/subpurseapi/testpost.json", function(req, res, text){
-    res.send(subsList);
+    if (!req.body) {
+        res.status(400);
+        res.send(http.STATUS_CODES[400] + '\r\n');
+    }else{
+        console.log(req.file);
+
+        res.status(200);
+        res.json(subsList);
+    }
 });
